@@ -1,4 +1,4 @@
-# Ses Çevirme
+# Local Transcribe
 
 [English](../README.md) · [Türkçe](README.tr.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · **Deutsch** · [Русский](README.ru.md) · [العربية](README.ar.md) · [简体中文](README.zh.md) · [日本語](README.ja.md)
 
@@ -6,7 +6,7 @@ Verwandle Aufnahmen von Vorlesungen und Tutorials direkt auf deinem Mac in Text 
 Das Transkript erscheint Zeile für Zeile, während du zusiehst. Wenn du möchtest, kannst du es anschließend von Gemini, Claude oder
 OpenAI mit deinem eigenen Prompt überarbeiten lassen und als PDF, Word, TXT oder SRT-Untertitel herunterladen.
 
-> **Derzeit nur macOS.** Ses Çevirme läuft auf Macs mit Apple Silicon (M1 oder neuer). Windows und Linux werden noch nicht unterstützt. Was dafür nötig ist, steht unten im Abschnitt „Windows und Linux“.
+> **Derzeit nur macOS.** Local Transcribe läuft auf Macs mit Apple Silicon (M1 oder neuer). Windows und Linux werden noch nicht unterstützt. Was dafür nötig ist, steht unten im Abschnitt „Windows und Linux“.
 
 ## Funktionen
 
@@ -74,7 +74,7 @@ Du kannst das Modell später in den Einstellungen wechseln. Das neue Modell wird
 
 ## Fehlerbehebung
 
-- **"Port 8765 is in use by another program":** Eine andere App verwendet diesen Port. Führe `SES_CEVIRME_PORT=8766 ./Baslat.command` aus, um einen anderen zu nutzen. (Läuft Ses Çevirme selbst bereits, öffnet ein erneuter Doppelklick auf `Baslat.command` einfach den Browser.)
+- **"Port 8765 is in use by another program":** Eine andere App verwendet diesen Port. Führe `LOCAL_TRANSCRIBE_PORT=8766 ./Baslat.command` aus, um einen anderen zu nutzen. (Läuft Local Transcribe selbst bereits, öffnet ein erneuter Doppelklick auf `Baslat.command` einfach den Browser.)
 - **Der Schlüsseltest meldet „abgelehnt“:** Der Schlüssel wurde beim Kopieren wahrscheinlich abgeschnitten. Füge ihn erneut ein.
 - **Wörter werden falsch erkannt:** Probier ein größeres Modell, leg die Transkriptionssprache fest, statt sie automatisch erkennen zu lassen, und nutze die KI-Bearbeitung, um Begriffe anhand des Kontexts zu korrigieren.
 

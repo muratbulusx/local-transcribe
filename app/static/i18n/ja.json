@@ -1,7 +1,7 @@
 {
   "_name": "日本語",
-  "app.name": "Ses Çevirme",
-  "app.title": "Ses Çevirme — 音声をテキストに",
+  "app.name": "Local Transcribe",
+  "app.title": "Local Transcribe — 音声をテキストに",
   "nav.aria": "メインメニュー",
   "nav.transcribe": "文字起こし",
   "nav.edit": "AI 編集",

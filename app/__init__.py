@@ -1,4 +1,4 @@
-"""Ses Çevirme. Uygulamanın indirdiği her şey (modeller, yazı tipleri, ayarlar) proje klasöründeki
+"""Local Transcribe. Uygulamanın indirdiği her şey (modeller, yazı tipleri, ayarlar) proje klasöründeki
 data/ altında durur; klasörü silmek uygulamayı tamamen kaldırır (API anahtarları hariç, onlar
 macOS Anahtar Zinciri'ndedir)."""
 

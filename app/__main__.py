@@ -11,7 +11,7 @@ import webbrowser
 import uvicorn
 
 HOST = "127.0.0.1"
-PORT = int(os.environ.get("SES_CEVIRME_PORT", "8765"))
+PORT = int(os.environ.get("LOCAL_TRANSCRIBE_PORT") or os.environ.get("SES_CEVIRME_PORT") or "8765")
 URL = f"http://{HOST}:{PORT}"
 
 
@@ -25,11 +25,11 @@ def _turkish() -> bool:
 
 TR = _turkish()
 MSG = {
-    "running": (f"Ses Çevirme zaten açık: {URL}", f"Ses Çevirme is already running: {URL}"),
-    "port": (f"{PORT} portu başka bir program tarafından kullanılıyor. SES_CEVIRME_PORT ile başka bir port seçebilirsin.",
-             f"Port {PORT} is in use by another program. Set SES_CEVIRME_PORT to use a different port."),
-    "started": (f"Ses Çevirme çalışıyor: {URL}  (kapatmak için bu pencerede Ctrl+C)",
-                f"Ses Çevirme is running: {URL}  (press Ctrl+C in this window to stop)"),
+    "running": (f"Local Transcribe zaten açık: {URL}", f"Local Transcribe is already running: {URL}"),
+    "port": (f"{PORT} portu başka bir program tarafından kullanılıyor. LOCAL_TRANSCRIBE_PORT ile başka bir port seçebilirsin.",
+             f"Port {PORT} is in use by another program. Set LOCAL_TRANSCRIBE_PORT to use a different port."),
+    "started": (f"Local Transcribe çalışıyor: {URL}  (kapatmak için bu pencerede Ctrl+C)",
+                f"Local Transcribe is running: {URL}  (press Ctrl+C in this window to stop)"),
 }
 
 
@@ -51,7 +51,7 @@ def already_running() -> bool:
 
 
 if __name__ == "__main__":
-    open_browser = not os.environ.get("SES_CEVIRME_NO_BROWSER")
+    open_browser = not (os.environ.get("LOCAL_TRANSCRIBE_NO_BROWSER") or os.environ.get("SES_CEVIRME_NO_BROWSER"))
     if port_in_use():
         if already_running():
             print(msg("running"))

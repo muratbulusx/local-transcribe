@@ -22,7 +22,7 @@ from starlette.concurrency import iterate_in_threadpool
 from . import export, fonts, llm, settings, transcribe
 
 STATIC = Path(__file__).parent / "static"
-app = FastAPI(title="Ses Çevirme")
+app = FastAPI(title="Local Transcribe")
 _jobs: dict[str, threading.Event] = {}
 
 

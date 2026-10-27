@@ -1,6 +1,6 @@
 <div dir="rtl">
 
-# Ses Çevirme
+# Local Transcribe
 
 [English](../README.md) · [Türkçe](README.tr.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · **العربية** · [简体中文](README.zh.md) · [日本語](README.ja.md)
 
@@ -8,7 +8,7 @@
 يظهر النص المُفرَّغ سطرًا بسطر أمام عينيك. ويمكنك بعد ذلك، إن شئت، أن تطلب من Gemini أو Claude أو
 OpenAI تنقيحه باستخدام موجّهك الخاص، ثم تنزيله بصيغة PDF أو Word أو TXT أو ترجمة مصاحبة SRT.
 
-> **حاليًا على macOS فقط.** يعمل Ses Çevirme على أجهزة Mac بمعالجات Apple Silicon ‏(M1 أو أحدث). لا يدعم Windows وLinux بعد. يوضّح قسم «Windows وLinux» أدناه ما يلزم لدعمهما.
+> **حاليًا على macOS فقط.** يعمل Local Transcribe على أجهزة Mac بمعالجات Apple Silicon ‏(M1 أو أحدث). لا يدعم Windows وLinux بعد. يوضّح قسم «Windows وLinux» أدناه ما يلزم لدعمهما.
 
 ## الميزات
 
@@ -76,7 +76,7 @@ OpenAI تنقيحه باستخدام موجّهك الخاص، ثم تنزيله
 
 ## حل المشكلات
 
-- **«Port 8765 is in use by another program»:** هناك تطبيق آخر يستخدم هذا المنفذ. شغّل `SES_CEVIRME_PORT=8766 ./Baslat.command` لاستخدام منفذ مختلف. (إذا كان Ses Çevirme نفسه يعمل بالفعل، فإن النقر المزدوج على `Baslat.command` مرة أخرى يفتح المتصفح فقط.)
+- **«Port 8765 is in use by another program»:** هناك تطبيق آخر يستخدم هذا المنفذ. شغّل `LOCAL_TRANSCRIBE_PORT=8766 ./Baslat.command` لاستخدام منفذ مختلف. (إذا كان Local Transcribe نفسه يعمل بالفعل، فإن النقر المزدوج على `Baslat.command` مرة أخرى يفتح المتصفح فقط.)
 - **اختبار المفتاح يُظهر «رُفض»:** ربما اقتُطع جزء من المفتاح عند النسخ. الصقه مرة أخرى.
 - **الكلمات تُفهَم بشكل خاطئ:** جرّب نموذجًا أكبر، وحدّد لغة التفريغ بدلًا من الاكتشاف التلقائي، واستخدم التحرير بالذكاء الاصطناعي لتصحيح المصطلحات بناءً على السياق.
 

@@ -1,7 +1,7 @@
 {
   "_name": "Türkçe",
-  "app.name": "Ses Çevirme",
-  "app.title": "Ses Çevirme — sesten metne",
+  "app.name": "Local Transcribe",
+  "app.title": "Local Transcribe — sesten metne",
   "nav.aria": "Ana menü",
   "nav.transcribe": "Çeviri",
   "nav.edit": "AI Düzenle",

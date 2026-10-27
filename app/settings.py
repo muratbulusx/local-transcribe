@@ -8,7 +8,7 @@ import keyring
 from . import DATA_DIR
 
 SETTINGS_FILE = DATA_DIR / "settings.json"
-KEYRING_SERVICE = "ses-cevirme"
+KEYRING_SERVICE = "ses-cevirme"  # eski adla kalıyor; değişirse kayıtlı anahtarlar kaybolur
 PROVIDERS = ("gemini", "claude", "openai")
 
 BUILTIN_PRESETS = ("not", "duzelt", "ozet")  # metinleri arayüz dilinde i18n dosyalarından gelir

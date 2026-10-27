@@ -1,7 +1,7 @@
 {
   "_name": "Русский",
-  "app.name": "Ses Çevirme",
-  "app.title": "Ses Çevirme — речь в текст",
+  "app.name": "Local Transcribe",
+  "app.title": "Local Transcribe — речь в текст",
   "nav.aria": "Главное меню",
   "nav.transcribe": "Расшифровка",
   "nav.edit": "Правка ИИ",

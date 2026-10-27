@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ses Çevirme kurulumu (macOS, Apple Silicon). Kullanım: ./install.sh
+# Local Transcribe kurulumu (macOS, Apple Silicon). Kullanım: ./install.sh
 # Mac'in dili Türkçeyse Türkçe, değilse İngilizce mesaj gösterir.
 set -e
 cd "$(dirname "$0")"
@@ -11,7 +11,7 @@ if [[ $LOCALE == tr* ]]; then L=tr; else L=en; fi
 say() { if [[ $L == tr ]]; then echo "$1"; else echo "$2"; fi; }
 
 echo ""
-say "  Ses Çevirme kurulumu" "  Ses Çevirme setup"
+say "  Local Transcribe kurulumu" "  Local Transcribe setup"
 echo "  ────────────────────"
 
 if [[ "$(uname)" != "Darwin" || "$(uname -m)" != "arm64" ]]; then

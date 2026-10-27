@@ -1,7 +1,7 @@
 {
   "_name": "English",
-  "app.name": "Ses Çevirme",
-  "app.title": "Ses Çevirme — speech to text",
+  "app.name": "Local Transcribe",
+  "app.title": "Local Transcribe — speech to text",
   "nav.aria": "Main menu",
   "nav.transcribe": "Transcribe",
   "nav.edit": "AI Edit",

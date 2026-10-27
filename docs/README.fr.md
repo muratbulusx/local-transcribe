@@ -1,4 +1,4 @@
-# Ses Çevirme
+# Local Transcribe
 
 [English](../README.md) · [Türkçe](README.tr.md) · [Español](README.es.md) · [Português](README.pt.md) · **Français** · [Deutsch](README.de.md) · [Русский](README.ru.md) · [العربية](README.ar.md) · [简体中文](README.zh.md) · [日本語](README.ja.md)
 
@@ -6,7 +6,7 @@ Transformez vos enregistrements de cours et de tutoriels en texte directement su
 La transcription s’affiche ligne par ligne sous vos yeux. Si vous le souhaitez, vous pouvez ensuite la faire retravailler par Gemini, Claude ou
 OpenAI avec votre propre prompt, puis la télécharger en PDF, Word, TXT ou sous-titres SRT.
 
-> **Pour l'instant, macOS uniquement.** Ses Çevirme fonctionne sur les Mac Apple Silicon (M1 ou ultérieur). Windows et Linux ne sont pas encore pris en charge. La section « Windows et Linux » ci-dessous indique ce qu'il faudrait pour les prendre en charge.
+> **Pour l'instant, macOS uniquement.** Local Transcribe fonctionne sur les Mac Apple Silicon (M1 ou ultérieur). Windows et Linux ne sont pas encore pris en charge. La section « Windows et Linux » ci-dessous indique ce qu'il faudrait pour les prendre en charge.
 
 ## Fonctionnalités
 
@@ -74,7 +74,7 @@ Vous pouvez changer de modèle plus tard dans les Réglages. Le nouveau modèle 
 
 ## Dépannage
 
-- **"Port 8765 is in use by another program" :** une autre app utilise ce port. Exécutez `SES_CEVIRME_PORT=8766 ./Baslat.command` pour en utiliser un autre. (Si Ses Çevirme est déjà en cours d’exécution, un nouveau double-clic sur `Baslat.command` ouvre simplement le navigateur.)
+- **"Port 8765 is in use by another program" :** une autre app utilise ce port. Exécutez `LOCAL_TRANSCRIBE_PORT=8766 ./Baslat.command` pour en utiliser un autre. (Si Local Transcribe est déjà en cours d’exécution, un nouveau double-clic sur `Baslat.command` ouvre simplement le navigateur.)
 - **Le test de la clé indique « refusée » :** la clé a probablement été tronquée lors de la copie. Collez-la à nouveau.
 - **Des mots sont mal reconnus :** essayez un modèle plus grand, indiquez la langue de transcription au lieu de la détection automatique et utilisez l’édition IA pour corriger les termes d’après le contexte.
 

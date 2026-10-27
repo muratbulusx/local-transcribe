@@ -1,4 +1,4 @@
-# Ses Çevirme
+# Local Transcribe
 
 [English](../README.md) · [Türkçe](README.tr.md) · [Español](README.es.md) · **Português** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [العربية](README.ar.md) · [简体中文](README.zh.md) · [日本語](README.ja.md)
 
@@ -6,7 +6,7 @@ Transforme gravações de aulas e tutoriais em texto no seu próprio Mac, sem en
 A transcrição aparece linha por linha enquanto você acompanha. Se quiser, depois você pode pedir ao Gemini, Claude ou
 OpenAI que a revise com o seu próprio prompt e baixá-la como PDF, Word, TXT ou legendas SRT.
 
-> **Por enquanto, só macOS.** O Ses Çevirme funciona em Macs com Apple Silicon (M1 ou posterior). Windows e Linux ainda não são suportados. A seção "Windows e Linux" abaixo lista o que é preciso para suportá-los.
+> **Por enquanto, só macOS.** O Local Transcribe funciona em Macs com Apple Silicon (M1 ou posterior). Windows e Linux ainda não são suportados. A seção "Windows e Linux" abaixo lista o que é preciso para suportá-los.
 
 ## Recursos
 
@@ -74,7 +74,7 @@ Você pode trocar de modelo depois em Ajustes. O novo modelo é baixado na prime
 
 ## Solução de problemas
 
-- **“Port 8765 is in use by another program”:** outro app está usando essa porta. Execute `SES_CEVIRME_PORT=8766 ./Baslat.command` para usar uma diferente. (Se o próprio Ses Çevirme já estiver rodando, clicar duas vezes em `Baslat.command` de novo só abre o navegador.)
+- **“Port 8765 is in use by another program”:** outro app está usando essa porta. Execute `LOCAL_TRANSCRIBE_PORT=8766 ./Baslat.command` para usar uma diferente. (Se o próprio Local Transcribe já estiver rodando, clicar duas vezes em `Baslat.command` de novo só abre o navegador.)
 - **O teste da chave diz “recusada”:** a chave provavelmente foi cortada ao copiar. Cole de novo.
 - **Palavras são entendidas errado:** experimente um modelo maior, defina o idioma da transcrição em vez de usar a detecção automática e use a edição com IA para corrigir termos pelo contexto.
 

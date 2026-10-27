@@ -1,4 +1,4 @@
-# Ses Çevirme
+# Local Transcribe
 
 [English](../README.md) · [Türkçe](README.tr.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [العربية](README.ar.md) · [简体中文](README.zh.md) · **日本語**
 
@@ -6,7 +6,7 @@
 文字起こし結果は目の前で 1 行ずつ表示されます。必要に応じて、Gemini、Claude、または
 OpenAI に自分のプロンプトでテキストを整えてもらい、PDF、Word、TXT、または SRT 字幕としてダウンロードできます。
 
-> **現在は macOS のみ対応です。** Ses Çevirme は Apple Silicon（M1 以降）搭載の Mac で動作します。Windows と Linux にはまだ対応していません。対応に必要な作業は下の「Windows と Linux」セクションにまとめています。
+> **現在は macOS のみ対応です。** Local Transcribe は Apple Silicon（M1 以降）搭載の Mac で動作します。Windows と Linux にはまだ対応していません。対応に必要な作業は下の「Windows と Linux」セクションにまとめています。
 
 ## 機能
 
@@ -74,7 +74,7 @@ macOS で「開発元が未確認」と表示された場合は、ファイル�
 
 ## トラブルシューティング
 
-- **「Port 8765 is in use by another program」：** 別のアプリがそのポートを使用しています。`SES_CEVIRME_PORT=8766 ./Baslat.command` を実行すると、別のポートを使用できます。（Ses Çevirme 自体がすでに実行中の場合は、`Baslat.command` をもう一度ダブルクリックしてもブラウザが開くだけです。）
+- **「Port 8765 is in use by another program」：** 別のアプリがそのポートを使用しています。`LOCAL_TRANSCRIBE_PORT=8766 ./Baslat.command` を実行すると、別のポートを使用できます。（Local Transcribe 自体がすでに実行中の場合は、`Baslat.command` をもう一度ダブルクリックしてもブラウザが開くだけです。）
 - **キーのテストで「拒否」と表示される：** コピー時にキーが途中で切れた可能性があります。もう一度貼り付けてください。
 - **言葉が聞き間違えられる：** より大きいモデルを試す、自動検出ではなく文字起こし言語を指定する、AI 編集で文脈から用語を直す、といった方法をお試しください。
 

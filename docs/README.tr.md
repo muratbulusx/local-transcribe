@@ -1,4 +1,4 @@
-# Ses Çevirme
+# Local Transcribe
 
 [English](../README.md) · **Türkçe** · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [العربية](README.ar.md) · [简体中文](README.zh.md) · [日本語](README.ja.md)
 
@@ -6,7 +6,7 @@ Ders ve konu anlatımı kayıtlarını kendi Mac'inde, sesi hiçbir yere yüklem
 Transkript sen izlerken satır satır yazılır. İstersen sonra Gemini, Claude ya da OpenAI'a kendi
 promptunla düzelttirip PDF, Word, TXT veya SRT altyazı olarak indirebilirsin.
 
-> **Şimdilik sadece macOS.** Ses Çevirme, Apple Silicon işlemcili Mac'lerde (M1 ve sonrası) çalışır. Windows ve Linux henüz desteklenmiyor. Bunlar için gerekenler aşağıdaki "Windows ve Linux" bölümünde.
+> **Şimdilik sadece macOS.** Local Transcribe, Apple Silicon işlemcili Mac'lerde (M1 ve sonrası) çalışır. Windows ve Linux henüz desteklenmiyor. Bunlar için gerekenler aşağıdaki "Windows ve Linux" bölümünde.
 
 ## Özellikler
 
@@ -74,7 +74,7 @@ Modeli sonradan Ayarlar'dan değiştirebilirsin. Yeni model ilk seçtiğinde ine
 
 ## Sorun giderme
 
-- **"8765 portu başka bir program tarafından kullanılıyor":** O portu başka bir uygulama kullanıyor. Farklı bir port için `SES_CEVIRME_PORT=8766 ./Baslat.command` çalıştır. (Ses Çevirme zaten açıksa `Baslat.command`'a tekrar çift tıklamak sadece tarayıcıyı açar.)
+- **"8765 portu başka bir program tarafından kullanılıyor":** O portu başka bir uygulama kullanıyor. Farklı bir port için `LOCAL_TRANSCRIBE_PORT=8766 ./Baslat.command` çalıştır. (Local Transcribe zaten açıksa `Baslat.command`'a tekrar çift tıklamak sadece tarayıcıyı açar.)
 - **Anahtar testi "reddedildi" diyor:** Anahtar kopyalanırken eksik kalmış olabilir. Tekrar yapıştır.
 - **Kelimeler yanlış duyuluyor:** Daha büyük bir model dene, otomatik algılama yerine çeviri dilini sabitle ve terimleri bağlama göre düzeltmek için AI düzenlemeyi kullan.
 

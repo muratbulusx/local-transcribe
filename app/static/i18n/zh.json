@@ -1,7 +1,7 @@
 {
   "_name": "简体中文",
-  "app.name": "Ses Çevirme",
-  "app.title": "Ses Çevirme — 语音转文字",
+  "app.name": "Local Transcribe",
+  "app.title": "Local Transcribe — 语音转文字",
   "nav.aria": "主菜单",
   "nav.transcribe": "转写",
   "nav.edit": "AI 编辑",

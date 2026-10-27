@@ -1,4 +1,4 @@
-# Ses Çevirme
+# Local Transcribe
 
 [English](../README.md) · [Türkçe](README.tr.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [العربية](README.ar.md) · **简体中文** · [日本語](README.ja.md)
 
@@ -6,7 +6,7 @@
 转写文本会在你眼前逐行出现。如果需要，你还可以让 Gemini、Claude 或 OpenAI
 按你自己的提示词整理文本，并下载为 PDF、Word、TXT 或 SRT 字幕。
 
-> **目前仅支持 macOS。** Ses Çevirme 运行在搭载 Apple Silicon（M1 或更新）的 Mac 上，暂不支持 Windows 和 Linux。下方的「Windows 和 Linux」一节列出了支持它们所需的工作。
+> **目前仅支持 macOS。** Local Transcribe 运行在搭载 Apple Silicon（M1 或更新）的 Mac 上，暂不支持 Windows 和 Linux。下方的「Windows 和 Linux」一节列出了支持它们所需的工作。
 
 ## 功能
 
@@ -74,7 +74,7 @@
 
 ## 故障排除
 
-- **“Port 8765 is in use by another program”：** 另一个 App 正在使用该端口。运行 `SES_CEVIRME_PORT=8766 ./Baslat.command` 即可改用其他端口。（如果 Ses Çevirme 本身已经在运行，再次连按 `Baslat.command` 只会打开浏览器。）
+- **“Port 8765 is in use by another program”：** 另一个 App 正在使用该端口。运行 `LOCAL_TRANSCRIBE_PORT=8766 ./Baslat.command` 即可改用其他端口。（如果 Local Transcribe 本身已经在运行，再次连按 `Baslat.command` 只会打开浏览器。）
 - **密钥测试显示“已拒绝”：** 密钥可能在拷贝时被截断了。请重新粘贴。
 - **词语被听错：** 尝试使用更大的模型，指定转写语言而不是自动检测，并使用 AI 编辑根据上下文修正术语。
 

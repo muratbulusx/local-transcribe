@@ -1,5 +1,5 @@
 [project]
-name = "ses-cevirme"
+name = "local-transcribe"
 version = "0.1.0"
 description = "Yerel çalışan ses/video → metin çevirici ve AI düzenleyici"
 requires-python = ">=3.11,<3.13"

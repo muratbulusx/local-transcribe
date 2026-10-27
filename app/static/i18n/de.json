@@ -1,7 +1,7 @@
 {
   "_name": "Deutsch",
-  "app.name": "Ses Çevirme",
-  "app.title": "Ses Çevirme – Sprache zu Text",
+  "app.name": "Local Transcribe",
+  "app.title": "Local Transcribe – Sprache zu Text",
   "nav.aria": "Hauptmenü",
   "nav.transcribe": "Transkribieren",
   "nav.edit": "KI-Bearbeitung",

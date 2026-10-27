@@ -1,7 +1,7 @@
 {
   "_name": "العربية",
-  "app.name": "Ses Çevirme",
-  "app.title": "Ses Çevirme — تحويل الكلام إلى نص",
+  "app.name": "Local Transcribe",
+  "app.title": "Local Transcribe — تحويل الكلام إلى نص",
   "nav.aria": "القائمة الرئيسية",
   "nav.transcribe": "التفريغ النصي",
   "nav.edit": "التحرير بالذكاء الاصطناعي",
