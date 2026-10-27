@@ -1,0 +1,24 @@
+[project]
+name = "ses-cevirme"
+version = "0.1.0"
+description = "Yerel çalışan ses/video → metin çevirici ve AI düzenleyici"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "python-multipart>=0.0.9",
+    "mlx-whisper>=0.4",
+    "silero-vad>=5.1",
+    "numpy",
+    "anthropic",
+    "openai",
+    "google-genai",
+    "keyring",
+    "fpdf2>=2.7",
+    "python-docx",
+    "huggingface_hub",
+    "uharfbuzz>=0.57.0",
+]
+
+[tool.uv]
+package = false
