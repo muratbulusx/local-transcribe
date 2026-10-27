@@ -6,6 +6,8 @@ Verwandle Aufnahmen von Vorlesungen und Tutorials direkt auf deinem Mac in Text 
 Das Transkript erscheint Zeile für Zeile, während du zusiehst. Wenn du möchtest, kannst du es anschließend von Gemini, Claude oder
 OpenAI mit deinem eigenen Prompt überarbeiten lassen und als PDF, Word, TXT oder SRT-Untertitel herunterladen.
 
+> **Derzeit nur macOS.** Ses Çevirme läuft auf Macs mit Apple Silicon (M1 oder neuer). Windows und Linux werden noch nicht unterstützt. Was dafür nötig ist, steht unten im Abschnitt „Windows und Linux“.
+
 ## Funktionen
 
 - **Live-Transkription:** Zieh eine Audio- oder Videodatei hinein und der Text erscheint fortlaufend mit Zeitstempeln.
@@ -18,7 +20,7 @@ OpenAI mit deinem eigenen Prompt überarbeiten lassen und als PDF, Word, TXT ode
 ## Voraussetzungen
 
 - Ein Mac mit Apple Chip (M1 oder neuer)
-- Etwa 5 GB freier Speicherplatz
+- Etwa 6 GB freier Speicherplatz
 - Eine Internetverbindung während der Installation (zum Laden des Spracherkennungsmodells)
 - Optional: ein API-Schlüssel von Google (Gemini), Anthropic (Claude) oder OpenAI für die KI-Bearbeitung
 
@@ -75,6 +77,25 @@ Du kannst das Modell später in den Einstellungen wechseln. Das neue Modell wird
 - **"Port 8765 is in use by another program":** Eine andere App verwendet diesen Port. Führe `SES_CEVIRME_PORT=8766 ./Baslat.command` aus, um einen anderen zu nutzen. (Läuft Ses Çevirme selbst bereits, öffnet ein erneuter Doppelklick auf `Baslat.command` einfach den Browser.)
 - **Der Schlüsseltest meldet „abgelehnt“:** Der Schlüssel wurde beim Kopieren wahrscheinlich abgeschnitten. Füge ihn erneut ein.
 - **Wörter werden falsch erkannt:** Probier ein größeres Modell, leg die Transkriptionssprache fest, statt sie automatisch erkennen zu lassen, und nutze die KI-Bearbeitung, um Begriffe anhand des Kontexts zu korrigieren.
+
+## Windows und Linux
+
+Die App läuft derzeit nur unter macOS mit Apple Silicon. Der Großteil (Weboberfläche, Server, Stilleerkennung, KI-Bearbeitung und Export) ist bereits plattformunabhängig. Diese Teile hängen am Mac und müssten sich ändern:
+
+| Teil | Jetzt (macOS) | Nötig für Windows / Linux |
+|---|---|---|
+| Spracherkennung | `mlx-whisper`, das nur auf der Apple-GPU läuft | `faster-whisper` (NVIDIA-GPU mit CUDA oder CPU) oder `whisper.cpp` (Vulkan für AMD- und Intel-GPUs). Sie nutzen ein anderes Modellformat, daher brauchen Modellliste und Downloader einen zweiten Satz Modelle. |
+| Python-Pakete | `mlx-whisper` wird auf jedem System installiert | Plattform-Marker in `pyproject.toml`, damit jedes System die passende Sprach-Engine bekommt |
+| Einrichtung und Start | `Kurulum.command`, `Baslat.command`, `install.sh` (bash, macOS-Befehle) | `.bat`-/PowerShell-Skripte für Windows und `.sh`-Skripte für Linux, die dieselben Schritte mit `uv` ausführen |
+| ffmpeg | Wird mit Homebrew installiert | `winget` oder ein mitgeliefertes ffmpeg unter Windows; `apt`/`dnf` unter Linux |
+| DeepFilterNet | Binärdatei für Apple Silicon | Dasselbe Release enthält auch Windows- und Linux-Binärdateien; das Setup muss die richtige laden |
+| Speicherung der API-Schlüssel | macOS-Schlüsselbund | Windows-Anmeldeinformationsverwaltung und Linux Secret Service (`keyring` unterstützt beide schon), dazu ein Ausweg für Linux-Systeme ohne Schlüsselbund |
+| Systemprüfungen | `sysctl` (Speicher, Chip) und `defaults` (Sprache) | Der jeweilige Weg des Systems, Speicher, GPU und Sprache auszulesen |
+
+- Ohne NVIDIA-GPU läuft large-v3 auf der CPU und ist um ein Vielfaches langsamer. Dort wären `large-v3-turbo` oder `medium` die bessere Voreinstellung.
+- Jede Plattform muss auf echter Hardware getestet werden.
+
+Beiträge sind willkommen: Eröffne ein Issue oder einen Pull Request.
 
 ## Lizenz
 

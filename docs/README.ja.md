@@ -6,6 +6,8 @@
 文字起こし結果は目の前で 1 行ずつ表示されます。必要に応じて、Gemini、Claude、または
 OpenAI に自分のプロンプトでテキストを整えてもらい、PDF、Word、TXT、または SRT 字幕としてダウンロードできます。
 
+> **現在は macOS のみ対応です。** Ses Çevirme は Apple Silicon（M1 以降）搭載の Mac で動作します。Windows と Linux にはまだ対応していません。対応に必要な作業は下の「Windows と Linux」セクションにまとめています。
+
 ## 機能
 
 - **リアルタイム文字起こし：** 音声または動画ファイルをドロップすると、タイムスタンプ付きのテキストが順に表示されます。
@@ -18,7 +20,7 @@ OpenAI に自分のプロンプトでテキストを整えてもらい、PDF、W
 ## 必要なもの
 
 - Apple シリコン（M1 以降）搭載の Mac
-- 約 5 GB の空きディスク容量
+- 約 6 GB の空きディスク容量
 - セットアップ中のインターネット接続（音声モデルのダウンロードに必要です）
 - 任意：AI 編集用の Google（Gemini）、Anthropic（Claude）、または OpenAI の API キー
 
@@ -75,6 +77,25 @@ macOS で「開発元が未確認」と表示された場合は、ファイル�
 - **「Port 8765 is in use by another program」：** 別のアプリがそのポートを使用しています。`SES_CEVIRME_PORT=8766 ./Baslat.command` を実行すると、別のポートを使用できます。（Ses Çevirme 自体がすでに実行中の場合は、`Baslat.command` をもう一度ダブルクリックしてもブラウザが開くだけです。）
 - **キーのテストで「拒否」と表示される：** コピー時にキーが途中で切れた可能性があります。もう一度貼り付けてください。
 - **言葉が聞き間違えられる：** より大きいモデルを試す、自動検出ではなく文字起こし言語を指定する、AI 編集で文脈から用語を直す、といった方法をお試しください。
+
+## Windows と Linux
+
+現在、このアプリは Apple Silicon 搭載の macOS でのみ動作します。大部分（Web インターフェース、サーバー、無音検出、AI 編集、書き出し）はすでにクロスプラットフォームです。Mac に依存していて変更が必要なのは次の部分です。
+
+| 部分 | 現在（macOS） | Windows / Linux で必要なこと |
+|---|---|---|
+| 音声認識 | Apple の GPU でしか動かない `mlx-whisper` | `faster-whisper`（CUDA 対応の NVIDIA GPU または CPU）か `whisper.cpp`（AMD・Intel GPU 向けの Vulkan）。モデル形式が異なるため、モデル一覧とダウンローダーに 2 つ目のモデルセットが必要です。 |
+| Python パッケージ | どのシステムにも `mlx-whisper` がインストールされる | 各システムに適した音声エンジンが入るよう、`pyproject.toml` にプラットフォーム条件を追加 |
+| セットアップと起動 | `Kurulum.command`、`Baslat.command`、`install.sh`（bash、macOS のコマンド） | 同じ手順を `uv` で行う、Windows 用の `.bat`/PowerShell スクリプトと Linux 用の `.sh` スクリプト |
+| ffmpeg | Homebrew でインストール | Windows では `winget` か同梱の ffmpeg、Linux では `apt`/`dnf` |
+| DeepFilterNet | Apple Silicon 用バイナリ | 同じリリースに Windows 用と Linux 用のバイナリもあるので、インストーラーが正しいものを取得する必要があります |
+| API キーの保存 | macOS のキーチェーン | Windows の資格情報マネージャーと Linux の Secret Service（`keyring` はどちらにも対応済み）、キーリングのない Linux 向けの代替手段 |
+| システムの確認 | `sysctl`（メモリ、チップ）と `defaults`（言語） | 各システムでメモリ・GPU・言語を取得する方法 |
+
+- NVIDIA GPU がない場合、large-v3 は CPU で動作し、数倍遅くなります。その環境では `large-v3-turbo` か `medium` を既定にするのがよいでしょう。
+- 各プラットフォームは実機でテストする必要があります。
+
+コントリビューション歓迎です。issue または pull request を送ってください。
 
 ## ライセンス
 

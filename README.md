@@ -6,6 +6,8 @@ Turn lecture and tutorial recordings into text on your own Mac, without uploadin
 The transcript appears line by line while you watch. If you want, you can then have Gemini, Claude or
 OpenAI clean it up with your own prompt and download it as PDF, Word, TXT or SRT subtitles.
 
+> **Currently macOS only.** Ses Çevirme runs on Macs with Apple Silicon (M1 or later). Windows and Linux aren't supported yet. The "Windows and Linux" section below lists what's needed to support them.
+
 ## Features
 
 - **Live transcription:** drop in an audio or video file and the text streams in with timestamps.
@@ -18,7 +20,7 @@ OpenAI clean it up with your own prompt and download it as PDF, Word, TXT or SRT
 ## Requirements
 
 - A Mac with Apple Silicon (M1 or later)
-- About 5 GB of free disk space
+- About 6 GB of free disk space
 - An internet connection during setup (to download the speech model)
 - Optional: an API key from Google (Gemini), Anthropic (Claude) or OpenAI for AI editing
 
@@ -75,6 +77,25 @@ You can switch models later in Settings. The new model downloads the first time 
 - **"Port 8765 is in use by another program":** another app is using that port. Run `SES_CEVIRME_PORT=8766 ./Baslat.command` to use a different one. (If Ses Çevirme itself is already running, double-clicking `Baslat.command` again just opens the browser.)
 - **The key test says "rejected":** the key was probably cut off when copying. Paste it again.
 - **Words are misheard:** try a bigger model, set the transcription language instead of auto-detect, and use AI editing to fix terms from context.
+
+## Windows and Linux
+
+The app currently works only on macOS with Apple Silicon. Most of it (the web interface, the server, silence detection, AI editing and export) is already cross-platform. These parts are tied to the Mac and would need to change:
+
+| Part | Now (macOS) | Needed for Windows / Linux |
+|---|---|---|
+| Speech recognition | `mlx-whisper`, which only runs on the Apple GPU | `faster-whisper` (NVIDIA GPU with CUDA, or CPU) or `whisper.cpp` (Vulkan for AMD and Intel GPUs). They use a different model format, so the model list and downloader need a second set of models. |
+| Python packages | `mlx-whisper` is installed on every system | Platform markers in `pyproject.toml` so each system gets the right speech engine |
+| Setup and start | `Kurulum.command`, `Baslat.command`, `install.sh` (bash, macOS commands) | `.bat`/PowerShell scripts for Windows and `.sh` scripts for Linux that do the same steps with `uv` |
+| ffmpeg | Installed with Homebrew | `winget` or a bundled ffmpeg on Windows; `apt`/`dnf` on Linux |
+| DeepFilterNet | Apple Silicon binary | The same release also has Windows and Linux binaries; the installer has to download the right one |
+| API key storage | macOS Keychain | Windows Credential Manager and Linux Secret Service (`keyring` already supports both), plus a fallback for Linux systems without a keyring |
+| System checks | `sysctl` (memory, chip) and `defaults` (language) | Each system's own way of reading memory, GPU and language |
+
+- Without an NVIDIA GPU, large-v3 runs on the CPU and is several times slower. `large-v3-turbo` or `medium` would be the better default there.
+- Each platform needs to be tested on real hardware.
+
+Contributions are welcome: open an issue or a pull request.
 
 ## License
 

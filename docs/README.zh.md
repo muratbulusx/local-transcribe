@@ -6,6 +6,8 @@
 转写文本会在你眼前逐行出现。如果需要，你还可以让 Gemini、Claude 或 OpenAI
 按你自己的提示词整理文本，并下载为 PDF、Word、TXT 或 SRT 字幕。
 
+> **目前仅支持 macOS。** Ses Çevirme 运行在搭载 Apple Silicon（M1 或更新）的 Mac 上，暂不支持 Windows 和 Linux。下方的「Windows 和 Linux」一节列出了支持它们所需的工作。
+
 ## 功能
 
 - **实时转写：** 拖入音频或视频文件，带时间戳的文字便会实时显示。
@@ -18,7 +20,7 @@
 ## 系统要求
 
 - 搭载 Apple 芯片（M1 或更新）的 Mac
-- 约 5 GB 可用磁盘空间
+- 约 6 GB 可用磁盘空间
 - 安装期间需要联网（用于下载语音模型）
 - 可选：用于 AI 编辑的 Google（Gemini）、Anthropic（Claude）或 OpenAI API 密钥
 
@@ -75,6 +77,25 @@
 - **“Port 8765 is in use by another program”：** 另一个 App 正在使用该端口。运行 `SES_CEVIRME_PORT=8766 ./Baslat.command` 即可改用其他端口。（如果 Ses Çevirme 本身已经在运行，再次连按 `Baslat.command` 只会打开浏览器。）
 - **密钥测试显示“已拒绝”：** 密钥可能在拷贝时被截断了。请重新粘贴。
 - **词语被听错：** 尝试使用更大的模型，指定转写语言而不是自动检测，并使用 AI 编辑根据上下文修正术语。
+
+## Windows 和 Linux
+
+目前应用只能在搭载 Apple Silicon 的 macOS 上运行。大部分功能（网页界面、服务器、静音检测、AI 编辑和导出）已经是跨平台的。以下部分依赖 Mac，需要修改：
+
+| 部分 | 现在（macOS） | Windows / Linux 需要 |
+|---|---|---|
+| 语音识别 | `mlx-whisper`，只能在 Apple GPU 上运行 | `faster-whisper`（带 CUDA 的 NVIDIA GPU 或 CPU）或 `whisper.cpp`（AMD 和 Intel GPU 使用 Vulkan）。它们的模型格式不同，因此模型列表和下载器需要第二套模型。 |
+| Python 包 | 所有系统都会安装 `mlx-whisper` | 在 `pyproject.toml` 中添加平台标记，让每个系统安装合适的语音引擎 |
+| 安装与启动 | `Kurulum.command`、`Baslat.command`、`install.sh`（bash、macOS 命令） | Windows 用 `.bat`/PowerShell 脚本，Linux 用 `.sh` 脚本，用 `uv` 完成相同步骤 |
+| ffmpeg | 通过 Homebrew 安装 | Windows 上用 `winget` 或内置 ffmpeg；Linux 上用 `apt`/`dnf` |
+| DeepFilterNet | Apple Silicon 二进制文件 | 同一版本也提供 Windows 和 Linux 二进制文件；安装程序需要下载对应的版本 |
+| API 密钥存储 | macOS 钥匙串 | Windows 凭据管理器和 Linux Secret Service（`keyring` 已支持两者），并为没有密钥环的 Linux 系统提供备用方案 |
+| 系统检测 | `sysctl`（内存、芯片）和 `defaults`（语言） | 各系统读取内存、GPU 和语言的方式 |
+
+- 没有 NVIDIA GPU 时，large-v3 会在 CPU 上运行，速度慢好几倍。这种情况下默认使用 `large-v3-turbo` 或 `medium` 更合适。
+- 每个平台都需要在真实硬件上测试。
+
+欢迎贡献：请提交 issue 或 pull request。
 
 ## 许可证
 

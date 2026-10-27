@@ -6,6 +6,8 @@ Ders ve konu anlatımı kayıtlarını kendi Mac'inde, sesi hiçbir yere yüklem
 Transkript sen izlerken satır satır yazılır. İstersen sonra Gemini, Claude ya da OpenAI'a kendi
 promptunla düzelttirip PDF, Word, TXT veya SRT altyazı olarak indirebilirsin.
 
+> **Şimdilik sadece macOS.** Ses Çevirme, Apple Silicon işlemcili Mac'lerde (M1 ve sonrası) çalışır. Windows ve Linux henüz desteklenmiyor. Bunlar için gerekenler aşağıdaki "Windows ve Linux" bölümünde.
+
 ## Özellikler
 
 - **Canlı çeviri:** Ses ya da video dosyasını bırak, metin zaman damgalarıyla akarak gelsin.
@@ -18,7 +20,7 @@ promptunla düzelttirip PDF, Word, TXT veya SRT altyazı olarak indirebilirsin.
 ## Gereksinimler
 
 - Apple Silicon işlemcili bir Mac (M1 ve sonrası)
-- Yaklaşık 5 GB boş disk alanı
+- Yaklaşık 6 GB boş disk alanı
 - Kurulum sırasında internet bağlantısı (konuşma modelini indirmek için)
 - İsteğe bağlı: AI düzenleme için Google (Gemini), Anthropic (Claude) ya da OpenAI API anahtarı
 
@@ -75,6 +77,25 @@ Modeli sonradan Ayarlar'dan değiştirebilirsin. Yeni model ilk seçtiğinde ine
 - **"8765 portu başka bir program tarafından kullanılıyor":** O portu başka bir uygulama kullanıyor. Farklı bir port için `SES_CEVIRME_PORT=8766 ./Baslat.command` çalıştır. (Ses Çevirme zaten açıksa `Baslat.command`'a tekrar çift tıklamak sadece tarayıcıyı açar.)
 - **Anahtar testi "reddedildi" diyor:** Anahtar kopyalanırken eksik kalmış olabilir. Tekrar yapıştır.
 - **Kelimeler yanlış duyuluyor:** Daha büyük bir model dene, otomatik algılama yerine çeviri dilini sabitle ve terimleri bağlama göre düzeltmek için AI düzenlemeyi kullan.
+
+## Windows ve Linux
+
+Uygulama şu an yalnızca Apple Silicon'lu macOS'ta çalışıyor. Büyük kısmı (web arayüzü, sunucu, sessizlik algılama, AI düzenleme ve dışa aktarma) zaten her sistemde çalışabilir. Mac'e bağlı olan ve değişmesi gereken kısımlar şunlar:
+
+| Bölüm | Şu an (macOS) | Windows / Linux için gereken |
+|---|---|---|
+| Konuşma tanıma | Sadece Apple GPU'sunda çalışan `mlx-whisper` | `faster-whisper` (CUDA'lı NVIDIA GPU ya da işlemci) veya `whisper.cpp` (AMD ve Intel GPU'lar için Vulkan). Model biçimleri farklı olduğu için model listesine ve indiriciye ikinci bir model seti gerekir. |
+| Python paketleri | `mlx-whisper` her sisteme kurulmaya çalışılıyor | Her sisteme doğru konuşma motoru kurulsun diye `pyproject.toml` içinde platform koşulları |
+| Kurulum ve başlatma | `Kurulum.command`, `Baslat.command`, `install.sh` (bash, macOS komutları) | Aynı adımları `uv` ile yapan, Windows için `.bat`/PowerShell, Linux için `.sh` betikleri |
+| ffmpeg | Homebrew ile kuruluyor | Windows'ta `winget` ya da uygulamayla gelen bir ffmpeg; Linux'ta `apt`/`dnf` |
+| DeepFilterNet | Apple Silicon sürümü indiriliyor | Aynı sürümün Windows ve Linux dosyaları da var; kurulum doğru olanı indirmeli |
+| API anahtarlarının saklanması | macOS Anahtar Zinciri | Windows Kimlik Bilgisi Yöneticisi ve Linux Secret Service (`keyring` ikisini de destekliyor), anahtarlık olmayan Linux sistemleri için de bir yedek yöntem |
+| Sistem kontrolleri | `sysctl` (bellek, işlemci) ve `defaults` (dil) | Her sistemin bellek, GPU ve dil bilgisini okuma yöntemi |
+
+- NVIDIA GPU yoksa large-v3 işlemcide çalışır ve birkaç kat yavaşlar. Orada varsayılan olarak `large-v3-turbo` ya da `medium` daha uygun olur.
+- Her platformun gerçek bir bilgisayarda test edilmesi gerekir.
+
+Katkılara açığız: bir issue ya da pull request aç.
 
 ## Lisans
 

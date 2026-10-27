@@ -6,6 +6,8 @@ Transformez vos enregistrements de cours et de tutoriels en texte directement su
 La transcription s’affiche ligne par ligne sous vos yeux. Si vous le souhaitez, vous pouvez ensuite la faire retravailler par Gemini, Claude ou
 OpenAI avec votre propre prompt, puis la télécharger en PDF, Word, TXT ou sous-titres SRT.
 
+> **Pour l'instant, macOS uniquement.** Ses Çevirme fonctionne sur les Mac Apple Silicon (M1 ou ultérieur). Windows et Linux ne sont pas encore pris en charge. La section « Windows et Linux » ci-dessous indique ce qu'il faudrait pour les prendre en charge.
+
 ## Fonctionnalités
 
 - **Transcription en direct :** déposez un fichier audio ou vidéo et le texte s’affiche au fur et à mesure, avec les horodatages.
@@ -18,7 +20,7 @@ OpenAI avec votre propre prompt, puis la télécharger en PDF, Word, TXT ou sous
 ## Configuration requise
 
 - Un Mac avec puce Apple (M1 ou ultérieur)
-- Environ 5 Go d’espace disque disponible
+- Environ 6 Go d’espace disque disponible
 - Une connexion Internet pendant l’installation (pour télécharger le modèle vocal)
 - Facultatif : une clé API de Google (Gemini), d’Anthropic (Claude) ou d’OpenAI pour l’édition IA
 
@@ -75,6 +77,25 @@ Vous pouvez changer de modèle plus tard dans les Réglages. Le nouveau modèle 
 - **"Port 8765 is in use by another program" :** une autre app utilise ce port. Exécutez `SES_CEVIRME_PORT=8766 ./Baslat.command` pour en utiliser un autre. (Si Ses Çevirme est déjà en cours d’exécution, un nouveau double-clic sur `Baslat.command` ouvre simplement le navigateur.)
 - **Le test de la clé indique « refusée » :** la clé a probablement été tronquée lors de la copie. Collez-la à nouveau.
 - **Des mots sont mal reconnus :** essayez un modèle plus grand, indiquez la langue de transcription au lieu de la détection automatique et utilisez l’édition IA pour corriger les termes d’après le contexte.
+
+## Windows et Linux
+
+Pour l'instant, l'app ne fonctionne que sur macOS avec Apple Silicon. L'essentiel (l'interface web, le serveur, la détection des silences, l'édition IA et l'export) est déjà multiplateforme. Ces parties dépendent du Mac et devraient changer :
+
+| Partie | Actuellement (macOS) | Nécessaire pour Windows / Linux |
+|---|---|---|
+| Reconnaissance vocale | `mlx-whisper`, qui ne tourne que sur le GPU Apple | `faster-whisper` (GPU NVIDIA avec CUDA, ou CPU) ou `whisper.cpp` (Vulkan pour les GPU AMD et Intel). Ils utilisent un autre format de modèle : la liste des modèles et le téléchargeur ont besoin d'un second jeu de modèles. |
+| Paquets Python | `mlx-whisper` est installé sur tous les systèmes | Des marqueurs de plateforme dans `pyproject.toml` pour que chaque système reçoive le bon moteur vocal |
+| Installation et lancement | `Kurulum.command`, `Baslat.command`, `install.sh` (bash, commandes macOS) | Des scripts `.bat`/PowerShell pour Windows et `.sh` pour Linux qui font les mêmes étapes avec `uv` |
+| ffmpeg | Installé avec Homebrew | `winget` ou un ffmpeg fourni sous Windows ; `apt`/`dnf` sous Linux |
+| DeepFilterNet | Binaire Apple Silicon | La même version publie aussi des binaires Windows et Linux ; l'installateur doit télécharger le bon |
+| Stockage des clés API | Trousseau macOS | Gestionnaire d'identification Windows et Secret Service sous Linux (`keyring` gère déjà les deux), plus une solution de repli pour les Linux sans trousseau |
+| Vérifications du système | `sysctl` (mémoire, puce) et `defaults` (langue) | La méthode propre à chaque système pour lire la mémoire, le GPU et la langue |
+
+- Sans GPU NVIDIA, large-v3 tourne sur le CPU et devient plusieurs fois plus lent. `large-v3-turbo` ou `medium` serait alors un meilleur choix par défaut.
+- Chaque plateforme doit être testée sur du vrai matériel.
+
+Les contributions sont les bienvenues : ouvrez une issue ou une pull request.
 
 ## Licence
 
